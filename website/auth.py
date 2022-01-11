@@ -1,5 +1,17 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+import sqlite3
 
-auth = Blueprint('auth', __name__)
-
-##Tu trzeba podpiąć logowanie do bazy danych (te z base.html)
+class LoginForm(FlaskForm):
+ email = StringField('Email', validators=[DataRequired(),Email()])
+ password = PasswordField('Password', validators=[DataRequired()])
+ remember = BooleanField('Remember Me')
+ submit = SubmitField('Login')
+ def validate_email(self, email):
+    conn = sqlite3.connect('/website/login.db')
+    curs = conn.cursor()
+    curs.execute("SELECT email FROM login where email = (?)",[email.data])
+    valemail = curs.fetchone()
+    if valemail is None:
+      raise ValidationError('This Email ID is not registered. Please register before login')

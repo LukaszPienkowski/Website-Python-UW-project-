@@ -6,3 +6,4 @@ b3 - https://www.flaticon.com/premium-icon/client_1224866?term=clients&page=1&po
 b4 - https://www.flaticon.com/free-icon/diagram_686887?term=structure&page=1&position=3&page=1&position=3&related_id=686887&origin=search
 b5 - https://www.flaticon.com/premium-icon/invoice_2474482?term=invoices&page=1&position=1&page=1&position=1&related_id=2474482&origin=search
 b6 - https://www.flaticon.com/premium-icon/transfer_3168026?term=money%20transfers&page=1&position=5&page=1&position=5&related_id=3168026&origin=search
+b7 - https://www.flaticon.com/premium-icon/logout_3889524?term=logout&page=1&position=1&page=1&position=1&related_id=3889524&origin=search
