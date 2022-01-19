@@ -2,5 +2,9 @@
 
 To do:
 - podpięcie baz danych
-- zrobienie reszty stron
-- logut button
+- zrobienie strony dasboard
+- zrobienie strony employees
+- zrobienie strony clients
+- zrobienie strony structure
+- zrobienie strony invoices
+- zrobienie strony money transfers
