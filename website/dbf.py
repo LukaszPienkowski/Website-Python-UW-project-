@@ -1,5 +1,6 @@
 import sqlite3
 from flask import Flask, Blueprint, render_template, request, flash, jsonify, flash, redirect, session, abort, url_for
+from grpc import method_handlers_generic_handler
 import numpy as np
 import pandas as pd
 
@@ -119,4 +120,45 @@ def view():
    
     rows = cur.fetchall(); 
     return render_template("view.html", rows = rows)
+
+@dbf.route('/enternew')
+def new_client():
+    return render_template('add_c.html')
+
+@dbf.route('/post_client', methods = ['GET', 'POST'])
+def post_client():
+    if request.method == 'POST':
+        id_c = request.form['id_c']
+        name_c = request.form['name_c']
+        country_c = request.form['country_c']
+        size_c = request.form['size_c']
+        addr_c = request.form['addr_c']
+        since_c = request.form['since_c']
+        len_c = request.form['len_c']
+        contact_c = request.form['contact_c']
+         
+        with sqlite3.connect("PythonProject.db") as con:
+            cur = con.cursor()
+            cur.execute("INSERT INTO Clients (id_cl,CompanyName,Country,Size,Address,ClientSince,LengthOfWork, Contact) VALUES (?,?,?,?,?,?,?,?)",(id_c, name_c, country_c, size_c, addr_c, since_c, len_c, contact_c))
+            con.commit()
+        con.rollback()
+        con.close()
+        return "<script>window.onload = window.close();</script>"
+            
+@dbf.route('/delete')
+def delete_client():
+    return render_template('delete_c.html')
+
+@dbf.route('/del_client', methods = ['POST', 'GET'])
+def del_client():
+    if request.method == 'POST':
+        id_c = request.form['id_c']
+        with sqlite3.connect("PythonProject.db") as con:
+            cur = con.cursor()
+            deletestat = "DELETE FROM Clients WHERE id_cl = ?"
+            cur.execute(deletestat, (id_c,))
+            con.commit()
+        con.rollback()
+        con.close()
+        return "<script>window.onload = window.close();</script>"
 

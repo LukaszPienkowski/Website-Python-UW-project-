@@ -53,6 +53,10 @@
   <a href="/"  style="position:fixed; margin:-170px 1433px; font-size:18px; white-space:nowrap"> 
     Log Out
   </a>
+  <img src="/static/images/b9.png" alt="" width="30" height="30" style="position:fixed; margin:-170px 343px">
+  <a href='/enternew' target = "popup" onclick="window.open('/enternew', 'Add Clients', 'width = 300, height = 400');" style="position: fixed; margin:-170px 383px; font-size: 18px; white-space: nowrap;">Add Data</a>
+  <img src="/static/images/b10.png" alt="" width="30" height="30" style="position:fixed; margin:-170px 518px">
+  <a href='/delete' target = "popup" onclick="window.open('/delete', 'Add Clients', 'width = 300, height = 400');" style="position: fixed; margin:-170px 553px; font-size: 18px; white-space: nowrap;">Delete Data</a>
 
   <div class="col1">
     <table>
@@ -63,6 +67,7 @@
       <td class="td1">Size</td>
       <td class="td1">Adress</td>
       <td class="td1">Client Since</td>
+      <td class='td1'>Length of Work</td>
       <td class="td1">Contact</td>
     </thead>
   </table>
@@ -79,6 +84,7 @@
         <td>{{row["Size"]}}</td>
         <td>{{row["Address"]}}</td>
         <td>{{row["ClientSince"]}}</td>
+        <td>{{row["LengthOfWork"]}}</td>
         <td>{{row["Contact"]}}</td>
       </tr>
     {% endfor %}
