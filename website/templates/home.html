@@ -14,8 +14,12 @@
 
     <!-- Custom styles for this template -->
     <link href="/static/css/floating-labels.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    
   </head>
 <body>
+
   <div class="alert">
   </div>
   <form class="form-signin1" style="position:fixed;">
@@ -55,6 +59,101 @@
     Log Out
   </a>
   
+
+  <div>
+    <canvas id = "lineChart" width="1000" height="300" style="position: fixed; margin: -100px 400px;"></canvas>
+  </div>
+  
+  <div>
+    <canvas id="myChart" width="400" height="300" style="position: fixed; margin: 230px 460px;"></canvas>
+  </div>
+
+  <div>
+    <canvas id="myChart2" width="400" height="300" style="position: fixed; margin: 230px 1010px;"></canvas>
+  </div>
+
+  <script>
+    var ctx1 = document.getElementById("lineChart").getContext("2d");
+    var lineChart = new Chart(ctx1, {
+      type: "line",
+      data: {
+        labels: {{ dates | safe}},
+        datasets: [
+          {
+            label: "Money Transfers",
+            data: {{ amounts | safe}},
+            fill: false,
+            borderColor: "rgb(75, 192, 192)",
+            lineTension: 0.1
+          }
+        ]
+      },
+      options: {
+        responsive: false
+      }
+    })
+
+    var ctx2 = document.getElementById("myChart").getContext("2d");
+    var myChart = new Chart(ctx2, {
+      type: "bar",
+      data: {
+        labels: {{ labels | safe}},
+        datasets: [
+          {
+            label: "Number of Projects",
+            data: {{ values | safe}},
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: false
+      }
+    })
+
+  var ctx3 = document.getElementById("myChart2").getContext("2d");
+  var myChart2 = new Chart(ctx3, {
+    type: 'doughnut',
+    data: {
+      labels: {{ names | safe}},
+      datasets: [
+        {
+          label: "Clients Address",
+          data: {{ amn | safe}},
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)'
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)'
+          ],
+          hoverOffSet: 4
+        }
+      ]
+    },
+    options: {
+      responsive: false
+    }
+  })
+  </script>
+
+ 
+
 
 </body>
 </html> 

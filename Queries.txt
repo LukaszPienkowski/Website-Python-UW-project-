@@ -1,0 +1,205 @@
+### DATABASE CREATE###
+CREATE TABLE Employees (
+    id_emp int NOT NULL PRIMARY KEY,
+    Name varchar(20) NOT NULL,
+    Surname varchar(20) NOT NULL,
+    DateOfBirth date NOT NULL,
+    WorkedYears int NOT NULL,
+    Position varchar(40) NOT NULL,
+    id_mtr int);
+    
+CREATE TABLE Clients (
+    id_cl int NOT NULL PRIMARY KEY,
+    CompanyName varchar(100) NOT NULL,
+    Country varchar(20) NOT NULL,
+    Size int NOT NULL,
+    Address varchar(100) NOT NULL,
+    ClientSince date NOT NULL,
+    LengthOfWork int NOT NULL,
+    Contact varchar(100) NOT NULL
+    );
+
+CREATE TABLE Invoices (
+    id_inv int NOT NULL PRIMARY KEY,
+    id_cl int NOT NULL,
+    id_mtr int,
+    Name varchar(80) NOT NULL,
+    Description varchar(200) NOT NULL,
+    Date date NOT NULL,
+    PaymentDate date NOT NULL,
+    Paid binary(1) NOT NULL
+    );
+
+CREATE TABLE MoneyTransfers (
+    id_mtr int NOT NULL PRIMARY KEY,
+    Name varchar(40) NOT NULL,
+    Amount int NOT NULL,
+    InOut binary(1) NOT NULL,
+    Date date NOT NULL
+    );
+
+CREATE TABLE Projects (
+    id_prj int NOT NULL PRIMARY KEY,
+    Name varchar(30) NOT NULL,
+    Description varchar(100) NOT NULL,
+    Date date NOT NULL,
+    id_mtr int,
+    Done binary(1) NOT NULL
+    );
+
+## TRIGGERS ##
+CREATE Trigger SalaryChanger AFTER INSERT ON Employees
+FOR EACH ROW
+BEGIN
+UPDATE Employees
+SET id_mtr = MoneyTransfers.Amount
+FROM MoneyTransfers
+WHERE Employees.id_mtr = MoneyTransfers.id_mtr;
+END;
+
+CREATE TRIGGER ProjectChanger AFTER INSERT ON Projects
+FOR EACH ROW
+BEGIN
+UPDATE Projects
+SET id_mtr = MoneyTransfers.Amount
+FROM MoneyTransfers
+WHERE Projects.id_mtr = MoneyTransfers.id_mtr
+AND Projects.id_mtr NOT NULL;
+END;
+DROP TRIGGER ProjectChanger;     
+
+## INSERT DATA ##
+INSERT INTO MoneyTransfers VALUES (1, "Money Transfer for Project A", 100000, 0, 2021),
+                                  (2, "Money Transfer for Project B", 200000, 0, 2021),
+                                  (3,  "Money Transfer for Project C", 250000, 0, 2021),
+                                  (4, "Money Transfer for Project E", 300000, 0, 2018),
+                                  (5, "Remuneration for Jan Kowalski", 3000, 1, 2022),
+                                  (6, "Remuneration for John Adamson", 3500, 1, 2022),
+                                  (7, "Remuneration for Mary Johns", 4000, 1, 2022),
+                                  (8, "Remuneration for Peter Samuelson", 4500, 1, 2022),
+                                  (9, "Remuneration for Jan Kowalski", 3000, 1, 2021),
+                                  (10, "Remuneration for John Adamson", 3500, 1, 2021),
+                                  (11, "Remuneration for Mary Johns", 4000, 1, 2021),
+                                  (12, "Remuneration for Peter Samuelson", 4500, 1, 2021),
+                                  (13, "Remuneration for Jan Kowalski", 3000, 1, 2021),
+                                  (14, "Remuneration for John Adamson", 3500, 1, 2021),
+                                  (15, "Remuneration for Mary Johns", 4000, 1, 2021),
+                                  (16, "Remuneration for Peter Samuelson", 4500, 1, 2021),
+                                  (17, "Remuneration for Jan Kowalski", 3000, 1, 2021),
+                                  (18, "Remuneration for John Adamson", 3500, 1, 2021),
+                                  (19, "Remuneration for Mary Johns", 4000, 1, 2021),
+                                  (20, "Remuneration for Peter Samuelson", 4500, 1, 2021),
+                                  (21, "Tax", 5000, 1, 2008),
+                                  (22, "Tax", 6000, 1, 2009),
+                                  (23, "Tax", 4000, 1, 2010),
+                                  (24, "Tax", 3000, 1, 2011),
+                                  (25, "Tax", 8000, 1, 2012),
+                                  (26, "Tax", 2000, 1, 2013),
+                                  (27, "Tax", 5000, 1, 2014),
+                                  (28, "Tax", 4000, 1, 2015),
+                                  (30, "Remuneration for Mateusz Winch", 7000, 1, 2021),
+                                  (31, "Remuneration for Krzysztof Nowak", 2000, 1, 2021),
+                                  (32, "Remuneration for Olivier Smith", 3000, 1, 2021),
+                                  (33, "Remuneration for Karol Warecki", 6000, 1, 2021),
+                                  (34, "Remuneration for Karol Bracki", 12000, 1, 2022),
+                                  (35, "Money Transfer for Project F", 300000, 0, 2019),
+                                  (36, "Money Transfer for Project G", 1000000, 0, 2021),
+                                  (37, "Money Transfer for Project H", 1000000, 0, 2021),
+                                  (39, "Money Transfer for Project J", 200000, 0, 2018),
+                                  (40, "Money Transfer for Project K", 1000000, 0, 2019),
+                                  (41, "Money Transfer for Project L", 300000, 0, 2021),
+                                  (42, "Money Transfer for Project M", 200000, 0, 2021),
+                                  (44, "Money Transfer for Project O", 300000, 0, 2018),
+                                  (45, "Money Transfer for Project P", 200000, 0, 2019),
+                                  (46, "Money Transfer for Project R", 1000000, 0, 2021),
+                                  (47, "Money Transfer for Project S", 200000, 0, 2021),
+                                  (49, "Money Transfer for Project U", 1000000, 0, 2018);
+
+
+INSERT INTO Employees VALUES (1, "Jan", "Kowalski", 2000, 1, "A1", 5),
+                             (2, "John", "Adamson", 2001, 2, "A2", 6),
+                             (3, "Mary", "Johns", 1999, 3, "SA1", 7),
+                             (4, "Peter", "Samuelson", 1998, 3, "SA1", 8),
+                             (5, "Mateusz", "Winch", 1991, 4, "Manager SA1", 35),
+                             (6, "Krzysztof", "Nowak", 1980, 1, "A1", 30),
+                             (7, "Olivier", "Smith", 1997, 3, "A2", 31),
+                             (8, "Karol", "Warecki", 1993, 5, "Manager A", 32),
+                             (9, "Karol", "Bracki", 1987, 10, "CEO", 33);
+                             
+ALTER TABLE Employees
+RENAME COLUMN id_mtr TO Salary;
+
+INSERT INTO Clients VALUES (1, "AAA", "Poland", 20, "Warsaw", 2015, 5, "mail@aaa.com"),
+                           (2, "BBB", "Germany", 50, "Berlin", 2015, 4, "mail@bbb.com"),
+                           (3, "CCC", "Czech Republic", 30, "Praga", 2016, 3, "mail@ccc.com"),
+                           (4, "DDD", "Poland", 40, "Cracow", 2014, 7, "mail@ddd.com");
+                           
+INSERT INTO Invoices VALUES (1, 1, 1, "Invoice for Project A", "Invoice for Project A Description", 2019, 2019, 1),
+                            (2, 1, 2, "Invoice for Project B", "Invoice for Project B Description", 2020, 2020, 1),
+                            (3, 2, 3, "Invoice for Project C", "Invoice for Project C Description", 2020, 2020, 1),
+                            (4, 3, NULL, "Invoice for Project D", "Invoice for Project D Description", 2021, 2021, 0),
+                            (5, 4, 4, "Invoice for Project E", "Invoice for Project E Description", 2018, 2018, 1),
+                            (6, 1, 35, "Invoice for Project F", "Invoice for Project A Description", 2019, 2019, 1),
+                            (7, 1, 36, "Invoice for Project G", "Invoice for Project B Description", 2020, 2021, 1),
+                            (8, 2, 37, "Invoice for Project H", "Invoice for Project C Description", 2020, 2021, 1),
+                            (9, 3, NULL, "Invoice for Project I", "Invoice for Project D Description", 2021, 2022, 0),
+                            (10, 4, 39, "Invoice for Project J", "Invoice for Project E Description", 2018, 2018, 1),
+                            (11, 1, 40, "Invoice for Project K", "Invoice for Project A Description", 2019, 2019, 1),
+                            (12, 1, 41, "Invoice for Project L", "Invoice for Project B Description", 2020, 2021, 1),
+                            (13, 2, 42, "Invoice for Project M", "Invoice for Project C Description", 2020, 2021, 1),
+                            (14, 3, NULL, "Invoice for Project N", "Invoice for Project D Description", 2021, 2022, 0),
+                            (15, 4, 44, "Invoice for Project O", "Invoice for Project E Description", 2018, 2018, 1),
+                            (16, 1, 45, "Invoice for Project P", "Invoice for Project A Description", 2019, 2019, 1),
+                            (17, 1, 46, "Invoice for Project R", "Invoice for Project B Description", 2020, 2021, 1),
+                            (18, 2, 47, "Invoice for Project S", "Invoice for Project C Description", 2020, 2021, 1),
+                            (19, 3, NULL, "Invoice for Project T", "Invoice for Project D Description", 2021, 2022, 0),
+                            (20, 4, 49, "Invoice for Project E", "Invoice for Project E Description", 2018, 2018, 1);
+                            
+INSERT INTO Projects VALUES (1, "Project A", "Project A Description", 2019, 1, 1),
+                            (2, "Project B", "Project B Description", 2020, 2, 1),
+                            (3, "Project C", "Project C Description", 2020, 3, 1),
+                            (4, "Project D", "Project D Description", 2021, NULL, 0),
+                            (5, "Project E", "Project E Description", 2018, 4, 1),
+                            (6, "Project F", "Project F Description", 2019, 30, 1),
+                            (7, "Project G", "Project G Description", 2020, 31, 1),
+                            (8, "Project H", "Project H Description", 2020, 32, 1),
+                            (9, "Project I", "Project I Description", 2021, NULL, 0),
+                            (10, "Project J", "Project J Description", 2018, 34, 1),
+                            (11, "Project K", "Project K Description", 2019, 35, 1),
+                            (12, "Project L", "Project L Description", 2020, 36, 1),
+                            (13, "Project M", "Project M Description", 2020, 37, 1),
+                            (14, "Project N", "Project N Description", 2021, NULL, 0),
+                            (15, "Project O", "Project O Description", 2018, 39, 1),
+                            (16, "Project P", "Project P Description", 2019, 40, 1),
+                            (17, "Project R", "Project R Description", 2020, 41, 1),
+                            (18, "Project S", "Project S Description", 2020, 42, 1),
+                            (19, "Project T", "Project T Description", 2021, NULL, 0),
+                            (20, "Project U", "Project U Description", 2018, 44, 1);
+ALTER TABLE Projects
+RENAME COLUMN id_mtr TO Costs;
+
+
+## INDEX ##
+CREATE INDEX id_transfer
+ON MoneyTransfers(id_mtr);
+
+
+## VIEW ## 
+CREATE VIEW YearBalance AS
+SELECT x.Date, x.Outgoing, y.Incoming, COALESCE(x.Outgoing + y.Incoming, x.Outgoing, y.Incoming) Balance
+FROM (SELECT -SUM(m.Amount) Outgoing, m.Date FROM MoneyTransfers m
+WHERE InOut = 1
+GROUP BY m.Date) AS X
+LEFT JOIN (SELECT SUM(m.Amount) Incoming, m.Date FROM MoneyTransfers m
+WHERE InOut = 0
+GROUP BY m.Date) y on x.Date = y.Date
+UNION ALL
+SELECT y.Date, x.Outgoing, y.Incoming, COALESCE(x.Outgoing + y.Incoming, x.Outgoing, y.Incoming) Balance
+FROM (SELECT SUM(m.Amount) Incoming, m.Date FROM MoneyTransfers m
+WHERE InOut = 0
+GROUP BY m.Date) y
+LEFT JOIN (SELECT -SUM(m.Amount) Outgoing, m.Date FROM MoneyTransfers m
+WHERE InOut = 1
+GROUP BY m.Date) x on x.Date = y.Date
+WHERE x.Date IS NULL
+ORDER BY x.Date;

@@ -54,5 +54,67 @@
     Log Out
   </a>
 
+  <div class="col1">
+    <table>
+    <thead>
+      <td class="td1">ID</td>
+      <td class="td1">Company Name</td>
+      <td class="td1">Country</td>
+      <td class="td1">Size</td>
+      <td class="td1">Adress</td>
+      <td class="td1">Client Since</td>
+      <td class="td1">Contact</td>
+    </thead>
+  </table>
+  </div>
+
+
+  <div class = "tables13">
+  <table>
+    {% for row in rows %}
+      <tr>
+        <td>{{row["id_cl"]}}</td>
+        <td>{{row["CompanyName"]}}</td>
+        <td>{{row["Country"]}}</td>
+        <td>{{row["Size"]}}</td>
+        <td>{{row["Address"]}}</td>
+        <td>{{row["ClientSince"]}}</td>
+        <td>{{row["Contact"]}}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  </div>
+
+  <div class="col2">
+    <table>
+    <thead>
+      <td class="td1">ID</td>
+      <td class="td1">Name</td>
+      <td class="td1"></td>
+      <td class="td1">Description</td>
+      <td class="td1">Date</td>
+      <td class="td1">Money Transfer ID</td>
+      <td class="td1">Done?</td>
+    </thead>
+  </table>
+  </div>
+
+
+  <div class = "tables14">
+  <table>
+    {% for row in rows1 %}
+      <tr>
+        <td>{{row["id_prj"]}}</td>
+        <td>{{row["Name"]}}</td>
+        <td>{{row["Description"]}}</td>
+        <td>{{row["Date"]}}</td>
+        <td>{{row["Costs"]}}</td>
+        <td>{{row["Done"]}}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  </div>
+
+
 </body>
 </html> 

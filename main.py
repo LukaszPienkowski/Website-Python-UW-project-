@@ -1,3 +1,4 @@
+from flask import render_template
 from website import create_app
 
 app = create_app()

@@ -16,7 +16,7 @@
     <link href="/static/css/floating-labels.css" rel="stylesheet">
   </head>
 <body>
-  <div class="alert">
+  <div class = 'alert'>
   </div>
   <form class="form-signin1" style="position:fixed;">
       <img class="mb-4" src="/static/images/c1.png" alt="" width="60" height="60">
@@ -53,6 +53,38 @@
   <a href="/"  style="position:fixed; margin:-170px 1433px; font-size:18px; white-space:nowrap"> 
     Log Out
   </a>
+  <img src="/static/images/b8.png" alt="" width="30" height="30" style="position:fixed; margin:-170px 343px">
+  <a href='/view' target = "_blank" style="position: fixed; margin:-170px 383px; font-size: 18px;">View</a>
 
+  <div class="col">
+    <table>
+    <thead>
+      <td class="td1">ID</td>
+      <td class="td1">Name</td>
+      <td class="td1">Surname</td>
+      <td class="td1">Date of Birth</td>
+      <td class="td1">Worked Years</td>
+      <td class="td1">Position</td>
+      <td class="td1">Salary</td>
+    </thead>
+  </table>
+  </div>
+
+
+  <div class = "tables12">
+  <table>
+    {% for row in rows %}
+      <tr>
+        <td>{{row["id_emp"]}}</td>
+        <td>{{row["Name"]}}</td>
+        <td>{{row["Surname"]}}</td>
+        <td>{{row["DateofBirth"]}}</td>
+        <td>{{row["WorkedYears"]}}</td>
+        <td>{{row["Position"]}}</td>
+        <td>{{row["id_mtr"]}}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  </div>
 </body>
 </html> 

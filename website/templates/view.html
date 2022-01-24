@@ -1,0 +1,35 @@
+<html>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/images/i1.png">
+    <title>View</title>
+
+    <body>
+        <div>
+            <table>
+            <thead>
+                <td>Date</td>
+              <td>Outgoing</td>
+              <td>Incoming</td>
+              <td>Balance</td>
+            </thead>
+          </table>
+          </div>
+        
+        
+          <div>
+          <table>
+            {% for row in rows %}
+              <tr>
+                <td>{{row["Date"]}}</td>
+                <td>{{row["Outgoin"]}}</td>
+                <td>{{row["Incoming"]}}</td>
+                <td>{{row["Balance"]}}</td>
+              </tr>
+            {% endfor %}
+          </table>
+          </div>
+    </body>
+</html>

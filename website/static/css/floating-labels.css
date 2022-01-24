@@ -6,8 +6,65 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
+  
 }
+
+.col {
+  background-color: #333;
+  color: white;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  text-align: center;
+  max-width: 76.8%;
+  position: fixed;
+  margin-left: 320px;
+  margin-top: -74px;
+  border-spacing: 10px;
+}
+
+.col1 {
+  background-color: #333;
+  color: white;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  text-align: center;
+  max-width: 76.8%;
+  position: fixed;
+  margin-left: 320px;
+  margin-top: -103px;
+  border-spacing: 10px;
+}
+
+.col2 {
+  background-color: #333;
+  color: white;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  text-align: center;
+  max-width: 76.8%;
+  position: fixed;
+  margin-left: 320px;
+  margin-top: 220px;
+  border-spacing: 10px;
+}
+
+td {
+  width: 4.3%;
+  max-width: 5%;
+  border: 1px black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-spacing: 10px;
+  white-space: nowrap;
+}
+
+td.td1 {
+  border-left: none;
+  border-right: none;
+  border-spacing: 50px;
+  border-collapse: separate;
+}
+
 
 body {
   display: -ms-flexbox;
@@ -17,7 +74,55 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
+  overflow-y: hidden;
 }
+
+.tables12{
+  border-collapse: collapse;
+  background-color: white;
+  color: black;
+  text-align: center;
+  overflow-y: scroll;
+  margin-left: 320px;
+  width: 77%;
+  max-width: 76.8%;
+  height: 550px;
+  margin-bottom: 70px;
+  margin-top: -50px;
+  position: fixed;
+}
+
+.tables13{
+  border-collapse: collapse;
+  background-color: white;
+  color: black;
+  text-align: center;
+  overflow-y: scroll;
+  margin-left: 320px;
+  width: 77%;
+  max-width: 76.8%;
+  height: 250px;
+  margin-bottom: 200px;
+  margin-top: -80px;
+  position: fixed;
+}
+
+.tables14{
+  border-collapse: collapse;
+  background-color: white;
+  color: black;
+  text-align: center;
+  overflow-y: scroll;
+  margin-left: 320px;
+  width: 77%;
+  max-width: 76.8%;
+  height: 250px;
+  margin-bottom: 200px;
+  margin-top: 243px;
+  position: fixed;
+}
+
+
 
 .form-signin {
   width: 100%;
@@ -46,8 +151,7 @@ body {
   background-color: #DEE4E7;
   padding: 15px;
   width: 300px;
-  height: 770px;
-  margin-bottom: -230px;
+  height: 2000px;
 }
 
 .figure{
